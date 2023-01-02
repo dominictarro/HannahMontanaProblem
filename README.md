@@ -10,7 +10,7 @@ Formula, algorithm, and performance benchmarking for the likelihood of an exclus
   - [How to](#how-to)
   - [Output](#output)
   - [Trial Generation](#trial-generation)
-- 
+- [Notebook](#notebook)
 
 ## The Problem
 
