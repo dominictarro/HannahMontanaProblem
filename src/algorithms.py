@@ -41,21 +41,15 @@ def likelihood_of_an_exclusive_relationship_completely_optimized(A: List[int], N
     Uses an optimized formula and algorithm.
     """
     A_sorted: List[int] = sorted(A)
-    _sum: int
+    _sum: int = 0
+    denom: int = 1
     numer: int
-    denom: int
 
     # Denominator Computations
     h: int = 1
-    initial_x_of_last_h = N - A_sorted[0] + 1
+    initial_x_of_last_h = N + 1
 
-    # calculating h for the smallest sample size in the sequence
-    h = math.prod(range(initial_x_of_last_h, N + 1))
-
-    _sum = A_sorted[0]
-    denom = h
-
-    for a in A_sorted[1:]:
+    for a in A_sorted:
         initial_x = N - a + 1
         # Calculating h up to the last x used in an h calculation
         h *= math.prod(range(initial_x, initial_x_of_last_h))
@@ -66,8 +60,8 @@ def likelihood_of_an_exclusive_relationship_completely_optimized(A: List[int], N
         initial_x_of_last_h = initial_x
 
     # Numerator Computations
-    numer = h
     # Calculating h up to the last x used in an h calculation
-    numer *= math.prod(range(N - _sum + 1, initial_x_of_last_h))
+    numer = math.prod(range(N - _sum + 1, initial_x_of_last_h))
+    numer *= h
 
     return 1.0 - numer / denom
